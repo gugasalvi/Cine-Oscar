@@ -1,4 +1,8 @@
-# Cine-Oscar
-Meu repositório criado para o TCD de desenvolvimento Web
+# Meu Projeto - Cine Oscar
+Trabalho de Conclusão da Disciplina de Desenvolvimento em Ambiente Web.
 
-Neste projeto, vou criar a página web de um cinema, desde os wireframes até a finalização da página. Este será o nosso Trabalho de Conclusão de Disciplina.
+## Autor
+Gustavo Tavares Salvi
+
+## Fase 1
+Entrega dos wireframes mobile, tablet e desktop.
