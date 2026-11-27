@@ -1,6 +1,10 @@
 # Cine Oscar
 
-Projeto desenvolvido para a disciplina de desenvolvimento web, com o objetivo de criar uma página de cinema responsiva.
+Projeto desenvolvido para a disciplina de Desenvolvimento Web, com o objetivo de criar uma página de cinema responsiva.
+
+## Site publicado
+
+Acesse o projeto: [Cine Oscar - GitHub Pages](https://gugasalvi.github.io/Cine-Oscar/)
 
 ## Sobre o projeto
 
@@ -39,13 +43,17 @@ npm run build
 
 Os filmes em cartaz são carregados por meio de uma requisição `fetch`, utilizando o arquivo JSON localizado em `public/movies.json`.
 
+A requisição é realizada dentro de um `useEffect`, com tratamento dos estados de carregamento e erro.
+
 Os próximos lançamentos são mantidos em um vetor local no projeto.
 
 ## Funcionalidades
 
 - Exibição de filmes em cartaz.
-- Carregamento de dados externos com `fetch` e `useEffect`.
+- Carregamento de dados por meio de `fetch` e `useEffect`.
 - Estado de carregamento durante a busca dos filmes.
 - Tratamento de erros com mensagem exibida na interface.
 - Exibição e ocultação dos próximos lançamentos.
+- Alternância entre tema claro e tema escuro.
 - Layout responsivo para diferentes tamanhos de tela.
+- Publicação do projeto utilizando GitHub Pages e GitHub Actions.
