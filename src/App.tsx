@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react'
 
 import Header from './components/header'
@@ -21,14 +22,20 @@ function App() {
   useEffect(() => {
     async function buscarFilmes() {
       try {
-        const resposta = await fetch('/movies.json')
+        const resposta = await fetch(`${import.meta.env.BASE_URL}movies.json`)
 
         if (!resposta.ok) {
           throw new Error('Não foi possível carregar os filmes.')
         }
 
         const dados: Filme[] = await resposta.json()
-        setFilmes(dados)
+
+        const filmesComImagens = dados.map((filme) => ({
+          ...filme,
+          imagem: `${import.meta.env.BASE_URL}${filme.imagem.replace(/^\//, '')}`,
+        }))
+
+        setFilmes(filmesComImagens)
       } catch {
         setErro('Não foi possível carregar os filmes. Tente novamente mais tarde.')
       } finally {
@@ -46,7 +53,7 @@ function App() {
           className="botao-tema"
           onClick={() => setTemaClaro(!temaClaro)}
         >
-          {temaClaro ? '🌙 Tema escuro' : '☀️ Tema claro'}
+          {temaClaro ? 'Tema escuro' : 'Tema claro'}
         </button>
       </div>
 
