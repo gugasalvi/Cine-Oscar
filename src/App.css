@@ -257,3 +257,21 @@ p {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
+.botao-lancamentos {
+  background-color: #242424;
+  color: #ff6565;
+  border: 1px solid #ff6565;
+  padding: 12px 22px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  margin-bottom: 24px;
+}
+
+.botao-lancamentos:hover {
+  background-color: #ff6565;
+  color: #ffffff;
+}
