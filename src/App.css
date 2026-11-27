@@ -167,6 +167,29 @@ p {
   line-height: 1.5;
 }
 
+/* Estados de carregamento e erro */
+
+.mensagem-carregando,
+.mensagem-erro {
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.mensagem-carregando {
+  background-color: var(--cor-superficie);
+  color: var(--cor-texto-secundario);
+  border: 1px solid var(--cor-borda);
+}
+
+.mensagem-erro {
+  background-color: var(--cor-superficie);
+  color: var(--cor-destaque);
+  border: 1px solid var(--cor-destaque);
+}
+
 .rodape {
   margin-top: var(--espacamento-secao);
   background-color: var(--cor-superficie);
