@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react'
 
 import Header from './components/header'
@@ -17,6 +16,7 @@ function App() {
   const [filmes, setFilmes] = useState<Filme[]>([])
   const [carregando, setCarregando] = useState(true)
   const [erro, setErro] = useState('')
+  const [temaClaro, setTemaClaro] = useState(false)
 
   useEffect(() => {
     async function buscarFilmes() {
@@ -40,7 +40,16 @@ function App() {
   }, [])
 
   return (
-    <div className="site">
+    <div className={`site ${temaClaro ? 'tema-claro' : ''}`}>
+      <div className="controle-tema container">
+        <button
+          className="botao-tema"
+          onClick={() => setTemaClaro(!temaClaro)}
+        >
+          {temaClaro ? '🌙 Tema escuro' : '☀️ Tema claro'}
+        </button>
+      </div>
+
       <Header />
 
       <main>
