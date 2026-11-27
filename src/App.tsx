@@ -1,5 +1,5 @@
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Header from './components/header'
 import Hero from './components/hero'
@@ -7,16 +7,56 @@ import MovieList from './components/movieList'
 import UpcomingMovieList from './components/upcomingMovieList'
 import Footer from './components/footer'
 
-import { filmes } from './movies'
+import type { Filme } from './types'
 import { filmesEmBreve } from './upcomingMovies'
 
 import './App.css'
 
 function App() {
   const [mostrarLancamentos, setMostrarLancamentos] = useState(true)
+  const [filmes, setFilmes] = useState<Filme[]>([])
+  const [carregando, setCarregando] = useState(true)
+  const [erro, setErro] = useState('')
+  const [temaClaro, setTemaClaro] = useState(false)
+
+  useEffect(() => {
+    async function buscarFilmes() {
+      try {
+        const resposta = await fetch(`${import.meta.env.BASE_URL}movies.json`)
+
+        if (!resposta.ok) {
+          throw new Error('Não foi possível carregar os filmes.')
+        }
+
+        const dados: Filme[] = await resposta.json()
+
+        const filmesComImagens = dados.map((filme) => ({
+          ...filme,
+          imagem: `${import.meta.env.BASE_URL}${filme.imagem.replace(/^\//, '')}`,
+        }))
+
+        setFilmes(filmesComImagens)
+      } catch {
+        setErro('Não foi possível carregar os filmes. Tente novamente mais tarde.')
+      } finally {
+        setCarregando(false)
+      }
+    }
+
+    buscarFilmes()
+  }, [])
 
   return (
-    <div className="site">
+    <div className={`site ${temaClaro ? 'tema-claro' : ''}`}>
+      <div className="controle-tema container">
+        <button
+          className="botao-tema"
+          onClick={() => setTemaClaro(!temaClaro)}
+        >
+          {temaClaro ? 'Tema escuro' : 'Tema claro'}
+        </button>
+      </div>
+
       <Header />
 
       <main>
@@ -25,7 +65,21 @@ function App() {
         <section id="em-cartaz" className="container secao">
           <h2>Em cartaz</h2>
 
-          <MovieList filmes={filmes} />
+          {carregando && (
+            <p className="mensagem-carregando">
+              Carregando filmes...
+            </p>
+          )}
+
+          {erro && (
+            <p className="mensagem-erro">
+              {erro}
+            </p>
+          )}
+
+          {!carregando && !erro && (
+            <MovieList filmes={filmes} />
+          )}
         </section>
 
         <section id="em-breve" className="container secao">
